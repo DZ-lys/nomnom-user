@@ -1,3 +1,5 @@
+import { LogoVertical } from "./Logo";
+
 const Footer = () => {
   return (
     <div className="bg-[#18181b] w-screen h-[47.2rem] flex flex-col justify-around ">
@@ -10,31 +12,43 @@ const Footer = () => {
           );
         })}
       </div>
-      <div className="flex w-[90%] bg-slate-700 m-auto gap-[13.75rem] ">
-        <div className="flex flex-col gap-3 items-center  ">
-          <div className="w-[2.9rem] h-[2.33rem] ">
-            <img src="nomnom-logo.png" alt="" />
+      <div className="flex w-[90%]  m-auto gap-[13.75rem] ">
+        <LogoVertical />
+        <div className="[&_p]:text-[#fafafa] [&_p]:text-base [&_h6]:text-[#71717a] [&_h6]:text-base flex gap-[112px] ">
+          <div className="flex flex-col gap-4 ">
+            <h6>NOMNOM</h6>
+            <p>Home</p>
+            <p>Contact us</p>
+            <p>Delivery zone</p>
           </div>
-          <div>
-            <div className="flex items-center  ">
-              <h4 className="text-xl font-semibold text-[#fafafa] tracking-[-0.5px] ">
-                Nom
-              </h4>
-              <h4 className="text-xl font-semibold text-[#ef4444] tracking-[-0.5px] ">
-                Nom
-              </h4>
+          <div className="flex gap-[56px]  ">
+            <div className="flex flex-col gap-4 ">
+              <h6>MENU</h6>
+              <p>Appetizers</p>
+              <p>Salads</p>
+              <p>Pizzas</p>
+              <p>Lunch favorites</p>
+              <p>Main dishes</p>
             </div>
-            <div className="flex items-center">
-              <p className="text-[#f4f4f5] text-xs font-normal ">
-                swift delivery
-              </p>
+            <div className="flex flex-col gap-4 mt-[2.5rem] ">
+              <p>Side dish</p>
+              <p>Brunch</p>
+              <p>Desserts</p>
+              <p>Beverages</p>
+              <p>Fish & Sea foods</p>
             </div>
           </div>
-        </div>
-        <div>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div className="flex flex-col gap-4">
+            <h6>Follow us</h6>
+            <div className="flex">
+              <div>
+                <img src="Social icon.png" alt="" />
+              </div>
+              <div>
+                <img src="Instagram.png" alt="" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div></div>
