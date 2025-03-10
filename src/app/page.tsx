@@ -1,5 +1,5 @@
-import Headie from "./components/Header";
-import Footer from "./components/Footer";
+import Footer from "@/components/Footer";
+import Headie from "@/components/Header";
 
 export default function Home() {
   return (
