@@ -1,4 +1,7 @@
 import { LogoHorizontal } from "@/components/Logo";
+import { Button } from "@/components/ui/button";
+import { getEventListeners } from "events";
+import { LayoutDashboard, SettingsIcon, TruckIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 type Props = {
@@ -6,6 +9,8 @@ type Props = {
 };
 
 const SideBar = () => {
+  const selected = () => {};
+
   return (
     <div className="flex flex-col gap-8 w-[20%] min-h-[100vh] py-9 px-7 ">
       <div>
@@ -30,10 +35,19 @@ const SideBar = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2">
-        <h2>Food Menu</h2>
-        <h2>Orders</h2>
-        <h2>Setting</h2>
+      <div className="flex flex-col gap-7">
+        <Button className="w-[10rem] h-10 rounded-full px-6 gap-[0.62rem] text-black bg-white shadow-none hover:bg-white ">
+          <LayoutDashboard />
+          Food menu
+        </Button>
+        <Button className="w-[10rem] h-10 rounded-full px-6 gap-[0.62rem] text-black bg-white shadow-none hover:bg-white ">
+          <TruckIcon />
+          Orders
+        </Button>
+        <Button className="w-[10rem] h-10 rounded-full px-6 gap-[0.62rem] text-black bg-white shadow-none hover:bg-white ">
+          <SettingsIcon />
+          Settings
+        </Button>
       </div>
     </div>
   );
