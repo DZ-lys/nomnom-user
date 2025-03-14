@@ -16,6 +16,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Category } from "@/types";
+import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -60,41 +66,67 @@ export const Categories = () => {
   }
 
   return (
-    <div className=" mt-16 max-w-[73.188rem] h-[11rem] bg-white rounded-xl flex gap-4 ">
-      {categories?.map((category) => {
-        return <h2 key={category._id}>{category.categoryName}</h2>;
-      })}
-
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button
-            variant="outline"
-            className="w-9 h-9 rounded-full py-2 px-4 bg-[#EF4444] text-white flex justify-center items-center hover:bg-[#ef4444] "
-          >
-            <Plus />
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="categoryName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Food name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Add new category" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit">Add</Button>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
+    <div className=" mt-16 max-w-[73.188rem] h-[11rem] bg-white rounded-xl flex justify-center flex-col ">
+      <div className="mb-4 ml-6">
+        <h1 className="text-xl font-semibold ">Dishes category</h1>
+      </div>
+      <div className="max-w-[73.188] ml-6 h-20 flex flex-wrap items-center gap-3 ">
+        <Button key={15} variant="outline" className="rounded-full ">
+          All Dishes
+        </Button>
+        {categories?.map((category) => {
+          return (
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button
+                  key={category._id}
+                  variant="outline"
+                  className="rounded-full "
+                >
+                  {category.categoryName}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>edit</DropdownMenuItem>
+                <DropdownMenuItem>remove</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          );
+        })}
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              variant="outline"
+              className="w-9 h-9 rounded-full py-2 px-4 bg-[#EF4444] text-white flex justify-center items-center hover:bg-[#ef4444] "
+            >
+              <Plus />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8"
+              >
+                <FormField
+                  control={form.control}
+                  name="categoryName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Food name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Add a new category" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit">Add</Button>
+              </form>
+            </Form>
+          </DialogContent>
+        </Dialog>
+      </div>
     </div>
   );
 };
