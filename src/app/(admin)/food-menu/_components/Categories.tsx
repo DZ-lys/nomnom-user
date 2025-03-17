@@ -30,7 +30,6 @@ export const Categories = () => {
     const data = await fetch("http://localhost:7800/addCategory");
     const jsonData = await data.json();
     setCategories(jsonData.data);
-    console.log(jsonData);
   };
 
   useEffect(() => {
@@ -57,7 +56,6 @@ export const Categories = () => {
       body: JSON.stringify({ categoryName: values.categoryName }),
     });
     const jsonData = await data.json();
-    console.log("data", jsonData);
     getCategories();
   };
 
@@ -66,12 +64,12 @@ export const Categories = () => {
   }
 
   return (
-    <div className=" mt-16 max-w-[73.188rem] h-[11rem] bg-white rounded-xl flex justify-center flex-col ">
+    <div className=" mt-16 max-w-[100%] h-[11rem] bg-white rounded-xl flex justify-center flex-col ">
       <div className="mb-4 ml-6">
         <h1 className="text-xl font-semibold ">Dishes category</h1>
       </div>
-      <div className="max-w-[73.188] ml-6 h-20 flex flex-wrap items-center gap-3 ">
-        <Button key={15} variant="outline" className="rounded-full ">
+      <div className="max-w-[100%] ml-6 h-20 flex flex-wrap items-center gap-3 ">
+        <Button variant="outline" className="rounded-full ">
           All Dishes
         </Button>
         {categories?.map((category) => {
@@ -97,7 +95,7 @@ export const Categories = () => {
           <DialogTrigger asChild>
             <Button
               variant="outline"
-              className="w-9 h-9 rounded-full py-2 px-4 bg-[#EF4444] text-white flex justify-center items-center hover:bg-[#ef4444] "
+              className="w-9 h-9 rounded-full py-2 px-4 bg-[#EF4444] text-white flex justify-center items-center hover:bg-[#ef4444] hover:text-white "
             >
               <Plus />
             </Button>
@@ -121,7 +119,9 @@ export const Categories = () => {
                     </FormItem>
                   )}
                 />
-                <Button type="submit">Add</Button>
+                <Button type="submit" className="ml-[20rem]">
+                  Add
+                </Button>
               </form>
             </Form>
           </DialogContent>
