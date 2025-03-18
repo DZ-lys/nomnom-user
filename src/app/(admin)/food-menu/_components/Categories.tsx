@@ -72,10 +72,10 @@ export const Categories = () => {
         <Button variant="outline" className="rounded-full ">
           All Dishes
         </Button>
-        {categories?.map((category) => {
+        {categories?.map((category, index) => {
           return (
-            <DropdownMenu>
-              <DropdownMenuTrigger>
+            <DropdownMenu key={index}>
+              <DropdownMenuTrigger asChild>
                 <Button
                   key={category._id}
                   variant="outline"
@@ -93,10 +93,7 @@ export const Categories = () => {
         })}
         <Dialog>
           <DialogTrigger asChild>
-            <Button
-              variant="outline"
-              className="w-9 h-9 rounded-full py-2 px-4 bg-[#EF4444] text-white flex justify-center items-center hover:bg-[#ef4444] hover:text-white "
-            >
+            <Button className="w-9 h-9 rounded-full py-2 px-4 bg-[#EF4444] text-white flex justify-center items-center hover:bg-[#ef4444] hover:text-white ">
               <Plus />
             </Button>
           </DialogTrigger>

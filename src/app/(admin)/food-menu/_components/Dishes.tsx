@@ -8,7 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Category } from "@/types";
-import { Plus } from "lucide-react";
+import { Image, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -59,18 +59,18 @@ export const Dishes = () => {
 
   return (
     <div className="flex flex-col gap-10">
-      {section?.map((type) => {
+      {section?.map((type, index) => {
         return (
-          <div className="max-w-[100%] h-[36.380rem] bg-white rounded-xl p-6 ">
+          <div
+            key={index}
+            className="max-w-[100%] h-[36.380rem] bg-white rounded-xl p-6 "
+          >
             <h1 className="font-semibold text-xl mb-5 ">{type.categoryName}</h1>
             <div></div>
             <Dialog>
               <DialogTrigger asChild>
                 <div className="flex flex-col gap-5 justify-center items-center w-[17rem] h-60 rounded-3xl border border-[#EF4444] border-dashed px-4 py-2 hover:cursor-pointer ">
-                  <Button
-                    variant="outline"
-                    className="w-10 h-10 rounded-full py-2 px-4 bg-[#EF4444] text-white flex justify-center items-center hover:bg-[#ef4444] hover:text-white "
-                  >
+                  <Button className="w-10 h-10 rounded-full py-2 px-4 bg-[#EF4444] text-white flex justify-center items-center hover:bg-[#ef4444] hover:text-white ">
                     <Plus />
                   </Button>
                   <div className="w-36">
@@ -80,24 +80,28 @@ export const Dishes = () => {
                   </div>
                 </div>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="w-[29rem]">
                 <DialogHeader>
                   <DialogTitle>Add new Dish to {type.categoryName}</DialogTitle>
                 </DialogHeader>
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-8"
+                    className="space-y-4"
                   >
-                    <FormItem className="w-[25.8rem] h-20 flex items-center justify-around ">
+                    <FormItem className="w-[25.8rem] h-20 flex items-center gap-7 ">
                       <FormField
                         control={form.control}
                         name="foodName"
                         render={({ field }) => (
-                          <FormItem>
+                          <FormItem className="w-48 h-16 mt-2">
                             <FormLabel>Food name</FormLabel>
                             <FormControl>
-                              <Input placeholder="Type food name" {...field} />
+                              <Input
+                                className="w-48 h-9 "
+                                placeholder="Type food name"
+                                {...field}
+                              />
                             </FormControl>
                           </FormItem>
                         )}
@@ -106,10 +110,14 @@ export const Dishes = () => {
                         control={form.control}
                         name="foodPrice"
                         render={({ field }) => (
-                          <FormItem>
+                          <FormItem className="w-48 h-16 ">
                             <FormLabel>Food price</FormLabel>
                             <FormControl>
-                              <Input placeholder="Enter price..." {...field} />
+                              <Input
+                                className="w-48 h-9 "
+                                placeholder="Enter price..."
+                                {...field}
+                              />
                             </FormControl>
                           </FormItem>
                         )}
@@ -124,6 +132,7 @@ export const Dishes = () => {
                             <FormLabel>Ingredients</FormLabel>
                             <FormControl>
                               <Input
+                                className="w-[25.7rem] h-24 flex "
                                 placeholder="List ingredients..."
                                 {...field}
                               />
@@ -132,7 +141,25 @@ export const Dishes = () => {
                         )}
                       />
                     </FormItem>
-                    <Button type="submit" className="ml-[23rem]">
+                    <FormItem>
+                      <FormField
+                        control={form.control}
+                        name="foodImage"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Food image</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="file"
+                                className="w-[25.7rem] h-28 "
+                                {...field}
+                              />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </FormItem>
+                    <Button type="submit" className="ml-[20rem]">
                       Add Dish
                     </Button>
                   </form>
