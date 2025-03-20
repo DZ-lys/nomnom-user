@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Category } from "@/types";
+import { Category, Details } from "@/types";
 import { Image, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
@@ -26,15 +26,24 @@ import { Input } from "@/components/ui/input";
 
 export const Dishes = () => {
   const [section, setSection] = useState<Category[]>([]);
+  const [details, setDetails] = useState<Details[]>([]);
 
   const getCategoryName = async () => {
     const data = await fetch("http://localhost:7800/addCategory");
     const jsonData = await data.json();
     setSection(jsonData.data);
   };
+  const getDetails = async () => {
+    const data = await fetch("http://localhost:7800/details");
+    const jsonData = await data.json();
+    setDetails(jsonData.data);
+  };
   useEffect(() => {
     getCategoryName();
+    getDetails();
   }, []);
+
+  console.log(details);
 
   const formSchema = z.object({
     foodName: z.string().min(3),
@@ -66,7 +75,6 @@ export const Dishes = () => {
             className="max-w-[100%] h-[36.380rem] bg-white rounded-xl p-6 "
           >
             <h1 className="font-semibold text-xl mb-5 ">{type.categoryName}</h1>
-            <div></div>
             <Dialog>
               <DialogTrigger asChild>
                 <div className="flex flex-col gap-5 justify-center items-center w-[17rem] h-60 rounded-3xl border border-[#EF4444] border-dashed px-4 py-2 hover:cursor-pointer ">
@@ -166,6 +174,18 @@ export const Dishes = () => {
                 </Form>
               </DialogContent>
             </Dialog>
+          </div>
+        );
+      })}
+      {details?.map((det, index) => {
+        return (
+          <div
+            key={index}
+            className="flex flex-col gap-5 justify-center items-center w-[17rem] h-60 rounded-3xl border border-[#E4e4e7] px-4 py-2 hover:cursor-pointer "
+          >
+            <div>
+              <img src="" alt="" />
+            </div>
           </div>
         );
       })}

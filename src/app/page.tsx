@@ -6,7 +6,10 @@ export default function Home() {
     <div>
       <Headie />
       <div className="mb-20">
-        <img src="home-main.png" alt="" />
+        <img
+          src="https://res.cloudinary.com/da889nybx/image/upload/v1742432774/etdig5bkqsfxu3ib4kff.png"
+          alt=""
+        />
       </div>
       <Footer />
     </div>
