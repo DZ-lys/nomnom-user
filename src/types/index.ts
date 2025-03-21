@@ -3,11 +3,11 @@ export type Category = {
   categoryName: string;
 };
 
-export type Details = {
+export type FoodWithCategoryType = {
   _id: string;
   foodName: string;
   price: number;
   image: string;
   ingredients: string;
-  category: string;
+  category: Category;
 };
